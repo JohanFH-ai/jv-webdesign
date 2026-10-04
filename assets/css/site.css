@@ -1,0 +1,66 @@
+/* =========================================================
+   JV Webdesign: aanvullingen voor de statische versie.
+   jv-webdesign.css blijft ongewijzigd (gelijk aan het designsysteem);
+   alles wat alleen de statische site nodig heeft, staat hier.
+   ========================================================= */
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + var(--space-4)); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; }
+img { max-width: 100%; height: auto; }
+[hidden] { display: none !important; }
+
+/* Skip-link */
+.skip-link { position: absolute; left: var(--space-4); top: -100px; z-index: 20; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--brand); color: var(--on-brand); font: 600 15px/20px var(--font-sans); text-decoration: none; }
+.skip-link:focus { top: var(--space-3); }
+
+/* Header: sticky */
+.site-header { position: sticky; top: 0; z-index: 10; }
+.jv-nav { position: relative; }
+
+/* Mobiel menu */
+.jv-nav__toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-200); color: var(--ink); box-shadow: var(--shadow-inset); cursor: pointer; transition: background-color .15s ease; }
+.jv-nav__toggle:hover { background: var(--surface-300); }
+.jv-nav__toggle .icon-close { display: none; }
+.jv-nav.is-open .jv-nav__toggle .icon-open { display: none; }
+.jv-nav.is-open .jv-nav__toggle .icon-close { display: inline; }
+.jv-nav__mobile-only { display: none; }
+
+@media (max-width: 900px) {
+  .jv-nav__toggle { display: inline-flex; }
+  .jv-nav.is-open .jv-nav__links {
+    display: grid; gap: 0; position: absolute; top: 100%; left: 0; right: 0; margin: 0;
+    padding: var(--space-2) var(--space-4) var(--space-4);
+    background: var(--surface-0); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-card);
+  }
+  .jv-nav.is-open .jv-nav__links a { display: flex; align-items: center; min-height: 48px; font-size: 17px; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .jv-nav.is-open .jv-nav__mobile-only { display: block; }
+  .jv-nav.is-open .jv-nav__mobile-only a { border-bottom: 0; color: var(--brand-text); font-weight: 600; }
+}
+@media (max-width: 380px) {
+  .jv-nav__actions .jv-btn--sm { padding: 0 var(--space-3); font-size: 13px; }
+}
+
+/* Contactformulier */
+.jv-form__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.jv-form { position: relative; }
+.jv-form__status { margin: 0; font: 600 15px/22px var(--font-sans); }
+.jv-form__status.is-success { color: var(--success-text); }
+.jv-form__status.is-error { color: var(--danger-text); }
+.jv-form [aria-invalid="true"] { border-color: var(--danger-text); }
+.jv-form button[aria-busy="true"] { opacity: .45; cursor: progress; }
+
+/* Boekingskalender (Cal.com inline-embed) */
+.jv-booking__placeholder .jv-btn { justify-self: center; margin-top: var(--space-2); }
+.jv-booking__embed { width: 100%; overflow: auto; border-radius: var(--radius-md); }
+.jv-booking__loading { display: flex; align-items: center; justify-content: center; gap: var(--space-3); min-height: 220px; margin: 0; border: 1px dashed var(--line-strong); border-radius: var(--radius-md); color: var(--ink-muted); font: 500 15px/22px var(--font-sans); }
+.jv-booking__spinner { width: 20px; height: 20px; border: 2px solid var(--line-strong); border-top-color: var(--brand-text); border-radius: 50%; animation: jv-spin .8s linear infinite; }
+@keyframes jv-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .jv-booking__spinner { animation-duration: 2.4s; } }
+
+/* 404-pagina */
+.jv-hero--404 { padding-bottom: var(--space-9); min-height: calc(100vh - var(--nav-height) - 200px); display: grid; align-content: center; }
+.not-found__links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2) var(--space-5); margin: var(--space-2) 0 0; padding: 0; list-style: none; }
+.not-found__links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--brand-text); font: 600 15px/20px var(--font-sans); text-decoration: none; }
+.not-found__links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 640px) { .jv-hero--404 { padding-bottom: var(--space-8); } }
